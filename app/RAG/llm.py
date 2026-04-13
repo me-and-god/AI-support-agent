@@ -1,6 +1,11 @@
 import requests
+import os
 
-API_KEY = "AIzaSyA_Soo0vjuny08YLaUhotsaTE7psYWEuBs"
+from dotenv import load_dotenv
+
+load_dotenv()
+
+API_KEY = os.getenv("API_KEY")
 
 class AIClient:
     def __init__(self):
@@ -13,7 +18,7 @@ class AIClient:
     def ask(self,prompt):
 
         data = {
-            "model":"gemini-2.5-flash-lite",
+            "model":"gemini-2.5-flash",
             "messages":[
                 {
                     "role":"user",

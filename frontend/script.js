@@ -16,18 +16,20 @@ async function uploadFile() {
 }
 
 async function sendQuery() {
+    const query = document.getElementById("query").value;
     const res = await fetch(`${API_BASE}/chat/`,{
         method:"POST",
         headers: {
-            "content-Type":"application/json"
+            "Content-Type":"application/json"
         },
-        body: JSON.stringify({ query })
+        body: JSON.stringify({ query: query })
     });
 
     const data = await res.json();
+    console.log(data);
 
     document.getElementById("response").innerText =
         "Answer:\n" + data.answer +
         "\n\nSources:\n" +
-        data.sources.map(s => s.text || s).join("\n---\n");
+        data.sources.map(s => s.text).join("\n---\n");
 }
